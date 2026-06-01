@@ -1,0 +1,23 @@
+{
+  "appId": "com.simiai.ainails",
+  "appName": "AI NAILS",
+  "webDir": "../../web/static",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  },
+  "ios": {
+    "contentInset": "automatic",
+    "scheme": "AINAILS"
+  },
+  "android": {
+    "allowMixedContent": false
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": true,
+      "backgroundColor": "#07100f",
+      "showSpinner": false
+    }
+  }
+}

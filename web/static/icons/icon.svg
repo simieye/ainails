@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="AI NAILS">
+  <rect width="512" height="512" rx="96" fill="#07100f"/>
+  <path d="M116 356c28-104 60-178 98-222 24-28 60-28 84 0 38 44 70 118 98 222 10 38-18 76-58 76H174c-40 0-68-38-58-76Z" fill="url(#nail)"/>
+  <path d="M188 350c14-58 34-104 60-138 6-8 16-8 22 0 26 34 46 80 60 138" fill="none" stroke="rgba(255,255,255,.62)" stroke-width="14" stroke-linecap="round"/>
+  <path d="M176 146h160" stroke="#6dffbf" stroke-width="18" stroke-linecap="round"/>
+  <path d="M164 384h184" stroke="#b07cff" stroke-width="18" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="nail" x1="120" x2="398" y1="122" y2="426" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1227ff"/>
+      <stop offset=".48" stop-color="#ff6fcf"/>
+      <stop offset="1" stop-color="#6dffbf"/>
+    </linearGradient>
+  </defs>
+</svg>

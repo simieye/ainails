@@ -1,0 +1,20 @@
+{
+  "name": "AI NAILS OpenClaw",
+  "short_name": "AI NAILS",
+  "description": "Talk to Create, Print in 10s. OpenClaw native AI nails app.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#07100f",
+  "theme_color": "#07100f",
+  "categories": ["beauty", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

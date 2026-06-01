@@ -1,0 +1,45 @@
+{
+  "name": "ai-nails-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI NAILS OpenClaw desktop shell for macOS and Windows.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist:mac": "electron-builder --mac dmg zip",
+    "dist:win": "electron-builder --win nsis portable",
+    "dist": "electron-builder --mac dmg zip --win nsis portable"
+  },
+  "devDependencies": {
+    "electron": "^31.7.7",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.simiai.ainails",
+    "productName": "AI NAILS",
+    "asar": true,
+    "files": [
+      "main.js",
+      "preload.js",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "../../web/static",
+        "to": "web/static"
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.lifestyle",
+      "target": ["dmg", "zip"]
+    },
+    "win": {
+      "target": ["nsis", "portable"]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}

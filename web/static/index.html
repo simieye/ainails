@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI NAILS OpenClaw Console</title>
+    <link rel="icon" href="data:," />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="icons/icon.svg" />
+    <meta name="theme-color" content="#07100f" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="AI NAILS" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="mark">AN</span>
+        <div>
+          <strong>AI NAILS</strong>
+          <small>OpenClaw Native</small>
+        </div>
+      </div>
+      <nav>
+        <a href="#create">Create 创作舱</a>
+        <a href="#gallery">Gallery 灵感矩阵</a>
+        <a href="#device">Device 龙虾智控</a>
+        <a href="#alliance">Alliance 商业协同</a>
+        <a href="#me">Me 创作者空间</a>
+        <a href="#skills">Skills 技能管理</a>
+      </nav>
+      <div class="sidebar-status">
+        <span></span>
+        <p>LK Box 本地主权节点在线</p>
+      </div>
+    </aside>
+
+    <main>
+      <section class="hero" id="create">
+        <div class="hero-copy">
+          <h1>Talk to Create, Print in 10s</h1>
+          <p id="mission">正在连接 AI NAILS OpenClaw Master...</p>
+          <div class="prompt-panel">
+            <div class="mode-switch" aria-label="APP mode">
+              <button class="mode-option active" data-mode="b2c" type="button">B2C 家庭版</button>
+              <button class="mode-option" data-mode="b2b" type="button">B2B 店中店</button>
+            </div>
+            <textarea id="promptInput" rows="4">我想要一个赛博朋克风格、带有深蓝色微光和蝴蝶翅膀纹理的设计</textarea>
+            <div class="quick-prompts" aria-label="Prompt presets">
+              <button type="button" data-prompt="国风水墨、银色留白、适合短方圆甲">国风水墨</button>
+              <button type="button" data-prompt="宇宙星空、猫眼微闪、适合杏仁甲">宇宙星空</button>
+              <button type="button" data-prompt="法式极简、珍珠光泽、适合通勤场景">法式极简</button>
+            </div>
+            <div class="actions">
+              <button id="generateDesign" type="button">生成 4 张候选图</button>
+              <button id="sendPrint" type="button">发送至彩绘机</button>
+              <button id="refresh" type="button">刷新状态</button>
+            </div>
+            <div class="refiner-output" id="refinerOutput">
+              OpenClaw Prompt Refiner 已待命，生成后会输出图案风格、甲型参数与打印安全边距。
+            </div>
+          </div>
+        </div>
+        <div class="nail-preview" aria-label="AI nail adaptive preview">
+          <div class="finger"></div>
+          <div class="nail-shape style-cyber shape-oval" id="nailShape">
+            <span></span>
+          </div>
+          <div class="scan-line"></div>
+          <div class="preview-controls" aria-label="Nail fitting controls">
+            <label>
+              甲型
+              <select id="shapeSelect">
+                <option value="oval">椭圆</option>
+                <option value="square">方圆</option>
+                <option value="almond">杏仁</option>
+              </select>
+            </label>
+            <label>
+              长度
+              <input id="lengthRange" type="range" min="86" max="132" value="112" />
+            </label>
+            <label>
+              强度
+              <input id="glowRange" type="range" min="28" max="78" value="52" />
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section class="metrics">
+        <article><span>SIMIAIOS Agent</span><strong id="metricAgents">64</strong></article>
+        <article><span>MCP 状态通道</span><strong id="metricMCP">--</strong></article>
+        <article><span>Prompt 资产目标</span><strong id="metricSkillHub">--</strong></article>
+        <article><span>打印闭环</span><strong>10s</strong></article>
+      </section>
+
+      <section class="section-band" id="gallery">
+        <div class="section-title">
+          <div>
+            <h2>nanobanana 3.0 灵感矩阵</h2>
+            <p>亚秒级生成、甲型自适应拓扑形变、AR 试戴与 1200 DPI 打印数据准备。</p>
+          </div>
+          <span id="runStatus">等待创意输入</span>
+        </div>
+        <div class="design-grid" id="designGrid"></div>
+      </section>
+
+      <section>
+        <div class="section-title">
+          <div>
+            <h2>OpenClaw 三层架构</h2>
+            <p>大脑层、创意层与硬执行层保持 MCP/JSON-RPC 双向状态反馈。</p>
+          </div>
+        </div>
+        <div class="grid" id="layers"></div>
+      </section>
+
+      <section id="device">
+        <div class="section-title">
+          <div>
+            <h2>龙虾智控 Device</h2>
+            <p>AI NAILS Printer / LK Box 的耗材、温度、视觉对焦与本地算力状态。</p>
+          </div>
+        </div>
+        <div class="device-layout">
+          <div class="printer-visual">
+            <div class="printer-head"></div>
+            <div class="print-bed">
+              <div></div>
+            </div>
+            <div class="print-progress">
+              <div class="progress-head">
+                <strong id="printPhase">待机</strong>
+                <span id="printPercent">0%</span>
+              </div>
+              <div class="progress-track"><span id="printBar"></span></div>
+              <p id="printTelemetry">V-ALIGN 未开始，喷头温度 36°C，LK Box 延迟 12ms。</p>
+            </div>
+          </div>
+          <div class="table" id="productsTable"></div>
+          <div class="table" id="ordersTable"></div>
+        </div>
+      </section>
+
+      <section id="matrix">
+        <div class="section-title">
+          <div>
+            <h2>SIMIAIOS 64 智能体集群</h2>
+            <p>八域乘八角色，覆盖创意生成、视觉定位、硬件调度、合规与 ROI 复盘。</p>
+          </div>
+        </div>
+        <div class="matrix" id="agentMatrix"></div>
+      </section>
+
+      <section id="alliance">
+        <div class="section-title">
+          <div>
+            <h2>Alliance 商业协同</h2>
+            <p>B2B 店中店运营后台，跟踪打印流水、45 天 ROI、热点图案与多店状态。</p>
+          </div>
+        </div>
+        <form id="campaignForm" class="form">
+          <input name="name" placeholder="门店/战役名称" value="上海静安店 45 天回本计划" />
+          <input name="market" placeholder="区域" value="Shanghai Flagship" />
+          <input name="product" placeholder="主推主题" value="Cyber butterfly nail set" />
+          <input name="budget_usd" type="number" min="1" step="100" value="4200" />
+          <button>创建运营计划</button>
+        </form>
+        <div class="ops-insights">
+          <article>
+            <span>45 天回本进度</span>
+            <strong id="roiProgress">63%</strong>
+            <div class="progress-track"><span style="width: 63%"></span></div>
+          </article>
+          <article>
+            <span>今日打印量</span>
+            <strong>186</strong>
+            <small>峰值 19:30 / 客单价 $18.6</small>
+          </article>
+          <article>
+            <span>热点图案</span>
+            <strong id="hotDesign">Cyber Wing</strong>
+            <small>采用率 31% / 复印率 18%</small>
+          </article>
+        </div>
+        <div class="campaigns" id="campaignList"></div>
+      </section>
+
+      <section class="result-panel">
+        <div class="section-title">
+          <div>
+            <h2>Agent 执行结果</h2>
+            <p>OpenClaw Master 将创意、设备与商业目标拆给智能体并回写知识资产。</p>
+          </div>
+        </div>
+        <div class="result-metrics">
+          <article><span>预测 ROI</span><strong id="metricROI">--</strong></article>
+          <article><span>预测流水</span><strong id="metricGMV">--</strong></article>
+          <article><span>执行预算</span><strong id="metricSpend">--</strong></article>
+        </div>
+        <div id="runResult" class="run-result"></div>
+      </section>
+
+      <section id="me">
+        <div class="section-title">
+          <div>
+            <h2>Me 创作者空间</h2>
+            <p>管理 nanobanana Prompt 资产、全球分成、多语言社区与可安装技能。</p>
+          </div>
+        </div>
+        <div class="creator-layout">
+          <div class="knowledge-list" id="knowledgeList"></div>
+          <div class="skill-list" id="skillHubList"></div>
+        </div>
+      </section>
+
+      <section id="skills">
+        <div class="section-title">
+          <div>
+            <h2>AI NAILS Skill 管理</h2>
+            <p>管理语音识别、提示词精修和美甲图片生成能力，连接 OpenAI Whisper、OpenAI Images 与 nano-banana-pro。</p>
+          </div>
+          <span id="skillRunStatus">技能待命</span>
+        </div>
+        <div class="skill-manager">
+          <div class="skill-workbench">
+            <div class="card-head">
+              <strong>语音 / 提示词生成美甲图</strong>
+              <span class="status ready">local demo</span>
+            </div>
+            <textarea id="skillPromptInput" rows="4">赛博朋克蝴蝶翅膀纹理，深蓝色猫眼微光，适合杏仁甲，店中店爆款风格</textarea>
+            <div class="skill-controls">
+              <button id="voicePromptButton" type="button">开始语音输入</button>
+              <button id="refineSkillPrompt" type="button">精修 Prompt</button>
+              <button id="generateSkillImage" type="button">生成美甲图</button>
+            </div>
+            <div class="skill-options">
+              <label>
+                生图 skill
+                <select id="imageSkillSelect">
+                  <option value="openai-image-gen">openai-image-gen</option>
+                  <option value="nano-banana-pro">nano-banana-pro</option>
+                </select>
+              </label>
+              <label>
+                语音 skill
+                <select id="voiceSkillSelect">
+                  <option value="openai-whisper-api">openai-whisper-api</option>
+                  <option value="browser-speech">Browser Speech API</option>
+                </select>
+              </label>
+              <label>
+                输出规格
+                <select id="imageSizeSelect">
+                  <option value="1K">1K 草稿</option>
+                  <option value="2K">2K 评审</option>
+                  <option value="4K">4K 交付</option>
+                </select>
+              </label>
+            </div>
+            <div class="refiner-output" id="skillRefinerOutput">
+              等待输入 Prompt。可先用浏览器语音转文字，也可以粘贴提示词后调用精修。
+            </div>
+            <div class="command-box">
+              <strong>运行命令预览</strong>
+              <code id="skillCommandPreview">openclaw skills run openai-image-gen --prompt "..."</code>
+            </div>
+          </div>
+          <div class="skill-image-preview" id="skillImagePreview">
+            <div class="generated-nail-art style-cyber"><span></span></div>
+            <strong id="generatedImageTitle">等待生成</strong>
+            <p id="generatedImageMeta">生成后会同步为可试戴图案，并可继续发送至彩绘机。</p>
+          </div>
+          <div class="skill-registry" id="nailSkillRegistry"></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-title">
+          <div>
+            <h2>MCP / 社区连接器</h2>
+            <p>连接 APP、LK Box、AIGC 图案库、翻译社区与商务 SaaS。</p>
+          </div>
+        </div>
+        <div class="connector-board" id="mcpConnectors"></div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

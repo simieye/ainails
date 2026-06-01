@@ -1,0 +1,21 @@
+{
+  "name": "ai-nails-mobile",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI NAILS OpenClaw mobile shell for iOS and Android.",
+  "scripts": {
+    "sync": "cap sync",
+    "add:ios": "cap add ios",
+    "add:android": "cap add android",
+    "open:ios": "cap open ios",
+    "open:android": "cap open android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.2.1",
+    "@capacitor/core": "^6.2.1",
+    "@capacitor/ios": "^6.2.1"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.2.1"
+  }
+}
